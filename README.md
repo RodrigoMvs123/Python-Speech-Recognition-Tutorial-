@@ -1,4 +1,9 @@
 # Python-Speech-Recognition-Tutorial-
+
+https://raw.githubusercontent.com/RodrigoMvs123/Python-Speech-Recognition-Tutorial-/main/README.md
+
+
+
 https://www.youtube.com/watch?v=mYUyaKmvu6Y
  
 Python Speech Recognition Tutorial 
