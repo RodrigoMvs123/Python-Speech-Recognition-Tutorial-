@@ -2,7 +2,7 @@
 
 https://raw.githubusercontent.com/RodrigoMvs123/Python-Speech-Recognition-Tutorial-/main/README.md
 
-
+https://github.com/RodrigoMvs123/Python-Speech-Recognition-Tutorial-/blame/main/README.md
 
 https://www.youtube.com/watch?v=mYUyaKmvu6Y
  
