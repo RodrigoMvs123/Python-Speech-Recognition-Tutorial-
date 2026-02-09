@@ -1,32 +1,24 @@
 # Python-Speech-Recognition-Tutorial-
 
-https://raw.githubusercontent.com/RodrigoMvs123/Python-Speech-Recognition-Tutorial-/main/README.md
+- https://raw.githubusercontent.com/RodrigoMvs123/Python-Speech-Recognition-Tutorial-/main/README.md
+- https://github.com/RodrigoMvs123/Python-Speech-Recognition-Tutorial-/blame/main/README.md
+- https://www.youtube.com/watch?v=mYUyaKmvu6Y
 
-https://github.com/RodrigoMvs123/Python-Speech-Recognition-Tutorial-/blame/main/README.md
-
-https://www.youtube.com/watch?v=mYUyaKmvu6Y
- 
-Python Speech Recognition Tutorial 
-
+## Python Speech Recognition Tutorial
 
 Python Speech Recognition Tutorial – Full Course for Beginners
 
-https://app.assemblyai.com/
-
-
-
-https://www.listennotes.com/podcasts/99-invisible/503-repeat-cIp5H6uJiYO/
-
-https://www.listennotes.com/podcast-api/docs/?s=side_bottom&id=236f314d3aaf4a9a8025bbabc5183654#get-api-v2-episodes-id
-
-
+- https://app.assemblyai.com/
+- https://www.listennotes.com/podcasts/99-invisible/503-repeat-cIp5H6uJiYO/
+- https://www.listennotes.com/podcast-api/docs/?s=side_bottom&id=236f314d3aaf4a9a8025bbabc5183654#get-api-v2-episodes-id
 
 Websockets
 
 OpenAI API
 
-01Main.py 
+**01Main.py**
 
+```python
 import sys
 from api_communication import * 
 
@@ -42,15 +34,20 @@ filename = sys.argv[1]
 
 audio_url = upload(filename)
 save transcript(audio_url, filename)
+```
 
+```bash
 (base) misraturp@msras-MacBook-Pro-2 Simple_Speech_Recognition % python main py output.wav 
 (base) misraturp@msras-MacBook-Pro-2 Simple_Speech_Recognition %
 
 (base) misraturp@msras-MacBook-Pro-2 Simple_Speech_Recognition % python main py output.wav 
 (base) misraturp@msras-MacBook-Pro-2 Simple_Speech_Recognition %
-Waiting for 30 seconds... 
+```
 
-02Main.py 
+Waiting for 30 seconds...
+
+**02Main.py**
+```python
 import json 
 from yt_extractor import get_audio_url, get_video_infos
 from api import save_transcript 
@@ -65,10 +62,14 @@ def save_video_sentiments(url):
 
     if __name__ == "__main__":
        # save_video_sentiments(https://www.youtube.com/watch?v=g5ymJNLURRI)
+```
 
+```bash
         (base) misraturp@msras-MacBook-Pro-2 Simple_Speech_Recognition % python main py
         (base) misraturp@msras-MacBook-Pro-2 Simple_Speech_Recognition %
+```
 
+```python
         with open ("data/iphone_13_Review:_Pros_and_Cons_sentiments.json", "r") as f:
             data = json.load(f)
 
@@ -95,12 +96,15 @@ def save_video_sentiments(url):
 
         r = n_pos / (n_pos + n_neg)
         print(f"Positive radio: {r:.3f}")
-                
+```
+
+```bash
         (base) misraturp@msras-MacBook-Pro-2 Simple_Speech_Recognition % python main py
         (base) misraturp@msras-MacBook-Pro-2 Simple_Speech_Recognition %
+```
 
-
-03Main.py 
+**03Main.py**
+```python
 from api_communication import *         
 import streamlit as st
 import json 
@@ -137,8 +141,10 @@ if button:
         chp['summary']
 
 
-# save transcript(980548e2c931409890f41abaf5eee189)
+# save transcript(...)
+```
 
+```bash
 (base)misraturp@msras-MacBook-Pro-2 Podcast sumarizarition % python 03main.py
 
 (base)misraturp@msras-MacBook-Pro-2 Podcast sumarizarition % python 03main.py
@@ -147,8 +153,10 @@ if button:
 (base)misraturp@msras-MacBook-Pro-2 Podcast sumarizarition % cd Desktop/Podcast\sumarizarition  
 (base)misraturp@msras-MacBook-Pro-2 Podcast\sumarizarition  % streamlit run 03main.py 
 (base)misraturp@msras-MacBook-Pro-2 
+```
 
-04Main.py
+**04Main.py**
+```python
  import pyaudio 
     import websockets 
     import asyncio 
@@ -222,10 +230,14 @@ if button:
             send_result, receive_result = await asyncio.gather(send(), receive())
 
            asyncio.run(send_receive())
+```
 
-           ~/p/python-speec-rec/05-realtime-openai python 04main.py 
-           
-           api_communication.py
+```bash
+           ~/p/python-speec-rec/05-realtime-openai python 04main.py
+```
+
+**api_communication.py**
+```python
            import requests
 from api_secrets import API_KEY_ASSEMBLYAI, API_KEY_LISTENNOTES
 import time
@@ -238,12 +250,15 @@ assemblyai_headers = {'authorization': "API_KEY_ASSEMBLYAI"}
 
 listennotes_episode_endpoint = "https://listen-api.listennotes.com/api/v2/episodes"
 listennotes_headers = {'X-ListenAPI-Key': "API_KEY_LISTENNOTES "}
+```
 
+```bash
 (base) misraturp@msras-MacBook-Pro-2 Simple_Speech_Recognition % python main py output.wav
 # Hi, I'am Rodrigo. This is a test one, two, three.
-(base) misraturp@msras-MacBook-Pro-2 Simple_Speech_Recognition % 
+(base) misraturp@msras-MacBook-Pro-2 Simple_Speech_Recognition %
+```
 
-
+```python
 def get_episode_audio_url(episode_id):
    url = listennotes_episode_endpoint + '/' + episode_id 
    response = requests.request('GET', url, headers = listennotes_headers)
@@ -268,21 +283,29 @@ def transcribe(audio_url, auto_chapters):
          }
     transcript_response = requests.post(transcript_endpoint, json=transcript_request, headers=assemblyai_headers)
     job_id = transcript_response.json()['id']
-    return job_id 
+    return job_id
+```
 
+```bash
 (base) misraturp@msras-MacBook-Pro-2 Simple_Speech_Recognition % python main py output.wav
 (base) misraturp@msras-MacBook-Pro-2 Simple_Speech_Recognition % python main py 
 (base) misraturp@msras-MacBook-Pro-2 Simple_Speech_Recognition %
+```
 
+```python
 # Poll 
 def poll(transcript_id): 
     polling_endpoint = transcript_endpoint + '/' + transcript_id 
     polling_response = requests.get(transcript_endpoint, headers=headers)
     return polling_response.json()
+```
 
+```bash
 (base) misraturp@msras-MacBook-Pro-2 Simple_Speech_Recognition % python main py 
 (base) misraturp@msras-MacBook-Pro-2 Simple_Speech_Recognition %
+```
 
+```python
 def get_transcription_result_url(url, auto_chapters)
     transcript_id = transcribe(url, auto_chapters)
     while True: 
@@ -294,12 +317,14 @@ def get_transcription_result_url(url, auto_chapters)
 
     print('Waiting 60 seconds...')
     time.sleep(60)
+```
 
-
+```bash
 (base) misraturp@msras-MacBook-Pro-2 Simple_Speech_Recognition % python main py output.wav 
 (base) misraturp@msras-MacBook-Pro-2 Simple_Speech_Recognition %
+```
 
-
+```python
 # Save transcript 
 
 def save transcript(episode_id): 
@@ -326,20 +351,27 @@ def save transcript(episode_id):
              return True 
     elif error 
         print("Error!!", error)
-       return False 
+       return False
+```
 
-
-
+```bash
 (base) misraturp@msras-MacBook-Pro-2 Simple_Speech_Recognition % python main py What_is_NLP .mp4 
 (base) misraturp@msras-MacBook-Pro-2 Simple_Speech_Recognition %
+```
 
-Api_Secrets.py
-API_KEY_ASSEMBLYAI = " 980548e2c931409890f41abaf5eee189"
-API_KEY_LISTENNOTES = " 236f314d3aaf4a9a8025bbabc5183654"
+**Api_Secrets.py**
+```python
+API_KEY_ASSEMBLYAI = "..."
+API_KEY_LISTENNOTES = "..."
+```
 
-Openai_Helper.py 
+**Openai_Helper.py**
+
+```bash
 ~/p/python-speec-rec/05-realtime-openai pip install openai
+```
 
+```python
 import openai
 from api_secrets import API_KEY_OPENAI
 
@@ -351,25 +383,37 @@ def ask_computer(prompt):
         prompt=prompt,
         max_tokens=100) 
     return response["choises"][0]["text"]
-    
-    Simple_Speech_Recognition.py 
-    
+```
+
+**Simple_Speech_Recognition.py**
+
+```bash
    (base) misraturp@msras-MacBook-Pro-2 Simple_Speech_Recognition % python main py output.wav
 # Hi, I'am Rodrigo. This is a test one, two, three. 
 
 (base) misraturp@msras-MacBook-Pro-2 Simple_Speech_Recognition %
+```
 
-https://app.assemblyai.com/
-0ef689df933d44d0accfd4769328c43c
+- https://app.assemblyai.com/
 
-api.py 
+```
+...
+```
+
+**api.py**
+```python
 dev save_transcript(url, title, sentiment_analysis=false):
 data, error = get_transcript_result_url(url, sentiment_analysis)
+```
 
-Load_mp3.py
+**Load_mp3.py**
+
+```bash
 ~/p/python-speech-rec/01-basics  brew install ffmpeg
-~/p/python-speech-rec/01-basics  pip install pydub  
+~/p/python-speech-rec/01-basics  pip install pydub
+```
 
+```python
 from pydub import AudioSegment 
 
 audio = AudioSegment.from_wav("Rodrigo.wav")
@@ -384,20 +428,26 @@ audio = audio.fade_in (2000)
 audio.export("mashup.mp3", format="mp3")
 
 audio2 = AudioSegment.from_mp3("mashup.mp3")
-print("done") 
+print("done")
+```
 
-~/p/python-speech-rec/01-basics   python load_mp3.py 
+```bash
+~/p/python-speech-rec/01-basics   python load_mp3.py
+```
 
-output.wav
+**output.wav**
+```
 encoding                            pcm_s16le            decode:  Stop, Play 
 format                              s16                  volume
 number_of_channel                   1(mono)              seekbar 
 sample_rate                         16000
 file_size                           160044 byte 
 duration                            5s 
-analyze                                                  settings 
+analyze                                                  settings
+```
 
-Plot_Audio.py
+**Plot_Audio.py**
+```python
 import wave
 import matplotlib.pyplot as plt 
 import numpy as np 
@@ -413,10 +463,14 @@ obj.close()
 t_audio = n_samples / samples_freq 
 
 print(t_audio)
+```
 
+```bash
 ~/p/python-speech-rec/01-basics    python plot_audio.py
 5.0 ...
+```
 
+```python
 signal_array = np.frombuffer(signal_wave, dtype=np.int16)
 
 times = np.linspace(0, t_audio, num=n_samples)
@@ -428,12 +482,14 @@ plt.ylabel("Signal wave")
 plt.xlabel("Time(s)")
 plt.xlim(0, t_audio)
 plt.show()
+```
 
-
+```bash
 ~/p/python-speech-rec/01-basics    python plot_audio.py
+```
 
-
-Record_Mic.py
+**Record_Mic.py**
+```python
 import pyaudio
 import wave 
 
@@ -469,45 +525,57 @@ obj.setsampwidth(p.get_sample_size(FORMAT))
 obj.setframerate(RATE)
 obj.writeframes(b"".join(frames))
 obj.close()
+```
 
+```bash
 ~/p/python-speech-rec/01-basics  python record_mic.py 
 // Hi I am rodrigo this is a test 123.
-// output.wav 
+// output.wav
+```
 
-Rodrigo_new_wav.wav
+**Rodrigo_new_wav.wav**
+```
 encoding                            pcm_s16le            decode:  Stop, Play 
 format                              s16                  volume
 number_of_channel                   1(mono)              seekbar 
 sample_rate                         16000
 file_size                           160044 byte 
 duration                            5s 
-analyze                                                  settings 
+analyze                                                  settings
+```
 
-
-Rodrigo.wav
+**Rodrigo.wav**
+```
 encoding                            pcm_s16le            decode:  Stop, Play 
 format                              s16                  volume
 number_of_channel                   1(mono)              seekbar 
 sample_rate                         16000
 file_size                           160044 byte 
 duration                            5s 
-analyze                                                  settings 
+analyze                                                  settings
+```
 
+**Wave_exemple.py**
 
-Wave_exemple.py
-Audio File Formats 
-.mp3
-.flac
-.wav
+Audio File Formats
+
+- .mp3
+- .flac
+- .wav
+
+```python
 import wave
+```
 
 Audio Signal Parameters
--number of channels 
--sample width
--framerate/sample_rate: 44,100 hz 
--number of frames
--value of a frame
 
+- number of channels
+- sample width
+- framerate/sample_rate: 44,100 hz
+- number of frames
+- value of a frame
+
+```python
 obj = wave.open("Rodrigo.wav", "rb")
 
 print("Number_of_channels", obj.getnchannels())
@@ -518,25 +586,32 @@ pritn("parameters", obj.getparams())
 
 t_audio = obj.getnframes() / obj.getframerate()
 print_(t_audio)
+```
 
-
+```bash
 ~/p/python-speech-rec/01-basics    python wave_exemple.py 
 Number of Channels ... 
 
 ~/p/python-speech-rec/01-basics    python wave_exemple.py 
 Number of Channels ... 
 5s
+```
 
+```python
 frames = obj.readframes(-1)
 print(type(frames), type(frames[0]))
 print (len(frames) / 2)
 
 obj.close()
+```
 
+```bash
 ~/p/python-speech-rec/01-basics    python wave_exemple.py 
 Number of Channels ... 
 80000
+```
 
+```python
 obj_new = wave.open("Rodrigo_new.wav", "wb")
 obj_new.setnchannels(1)
 obj_new.setsampwidth(2)
@@ -545,12 +620,15 @@ obj_new.setframerate(16000.0)
 obj.new.writeframes(frames)
 
 obj.new.close()
+```
 
+```bash
 ~/p/python-speech-rec/01-basics    python wave_exemple.py 
-Number of Channels ... 
+Number of Channels ...
+```
 
-
-yt_Extractor.py 
+**yt_Extractor.py**
+```python
 import youtube_dl 
 
 ydl = youtube_dl.YoutubeDL()
@@ -574,15 +652,9 @@ if __name__ == "__main__":
     video_info = get_video_infos(https://www.youtube.com/watch?v=g5ymJNLURRI)
     audio_url = get_audio_url(video_info)
     print(audio_url)
+```
 
+```bash
 /p/python-speech-python-rec/03-sentiment-analyses  yt_extract.py 
-/p/python-speech-python-rec/03-sentiment-analyses 
-
-
-
-
-
-
-
-
-
+/p/python-speech-python-rec/03-sentiment-analyses
+```
